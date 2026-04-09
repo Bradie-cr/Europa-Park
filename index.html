@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organisation Sortie Europa-Park</title>
+    <style>
+        /* Défilement fluide activé sur toute la page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #002349; 
+            --accent: #d4a017;  
+            --text-dark: #2c3e50;
+            --bg-body: #e2e8f0; 
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-body);
+            margin: 0;
+            padding: 10px;
+            /* Optimisation du rendu du texte pour la fluidité */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 55px 30px;
+            text-align: center;
+            border-bottom: 6px solid var(--accent);
+            background-image: linear-gradient(rgba(0,35,73,0.8), rgba(0,35,73,0.8)), url('https://www.europapark.de/sites/default/files/styles/max/public/media_image/2023-05/Europa-Park_Skyline.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 { 
+            margin: 0; 
+            font-size: 36px; 
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .content { padding: 45px 35px; }
+
+        .preview-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            margin: 25px 0;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transition plus fluide */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background: #fff;
+        }
+        .preview-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+        .preview-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .preview-card-info { padding: 18px; border-top: 4px solid var(--accent); }
+        .preview-card-title { color: var(--primary); text-decoration: underline; font-weight: bold; font-size: 18px; }
+
+        h2 { 
+            font-size: 22px; 
+            color: var(--primary); 
+            border-left: 6px solid var(--accent);
+            padding-left: 15px;
+            margin-top: 45px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #f1f5f9, transparent);
+        }
+
+        .note-text { white-space: pre-wrap; margin-bottom: 20px; font-size: 15px; }
+
+        .highlight-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .pdf-link {
+            display: flex;
+            align-items: center;
+            background: #2b4496;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(43, 68, 150, 0.2);
+            transition: transform 0.2s;
+        }
+        .pdf-link:hover { transform: scale(1.01); }
+        
+        .pdf-icon {
+            width: 35px; height: 45px; background: white; border-radius: 4px;
+            margin-right: 15px; position: relative;
+        }
+        .pdf-icon::after { content: "PDF"; color: #2b4496; font-size: 9px; font-weight: bold; position: absolute; bottom: 5px; left: 7px; }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .location-item {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 18px;
+            border-radius: 15px;
+        }
+        .maps-btn {
+            display: block;
+            margin-top: 12px;
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            background: #fff;
+            padding: 8px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            transition: background 0.2s;
+        }
+        .maps-btn:hover { background: #f8fbff; }
+
+        .date-tag {
+            display: inline-block;
+            background: #fff;
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 13px;
+            border: 1px solid #cbd5e1;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 13px;
+            color: #64748b;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Personnalisation de la barre de défilement (Scrollbar) pour Chrome/Safari */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-body);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Europapark</h1>
+    </header>
+
+    <div class="content">
+        <a href="https://www.europapark.de/fr/reglement-du-parc" class="preview-card" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.europapark.de/sites/default/files/styles/max/public/media_image/2023-08/EP23_Frankreich_Silverstar_Sommer12.jpg?itok=hQISS0Bj" alt="Europa-Park">
+            <div class="preview-card-info">
+                <span class="preview-card-title">Règlement du parc et du parking</span>
+            </div>
+        </a>
+
+        <h2>Sécurité du parc</h2>
+        <p class="note-text">Tout d'abord :</p>
+
+        <div class="highlight-box">
+            <p class="note-text"><strong>La règle 3.2 :</strong>
+dit que tout les visiteurs sont tenus d'adopter un comportement correct et convenable. les troubles a l'ordre public, les dégradations volontaires,' les préjudices a l'encontre des autres visiteur, les violences verbales et physique, les propos insultants ou discriminants, le non respect du règlement du parc, etc pourront amener a une exclusion du parc, dépose de plainte ou autres recours</p>
+        </div>
+
+        <div class="highlight-box">
+            <p class="note-text"><strong>Règles 3.3 :</strong>
+dit que la possession et le port d'arme, d'armes factices ou d'objets dangereux tels que les armes a feux, couteaux aiguisés/ pointus présent dans la liste d'objets interdit disponible juste en dessous sont strictement interdit dans le parc.</p>
+        </div>
+
+        <a href="https://www.europapark.de/sites/default/files/media_document/2021-03/list_dobjets_interdits_fr_europa-park.pdf" class="pdf-link" target="_blank" rel="noopener noreferrer">
+            <div class="pdf-icon"></div>
+            <div>
+                <div style="font-weight:bold;">Liste d'objets interdit :</div>
+                <div style="font-size:12px; opacity: 0.9;">Document PDF · 356 ko · europapark.de</div>
+            </div>
+        </a>
+
+        <div class="highlight-box">
+            <p class="note-text"><strong>Règles 3.8 :</strong>
+dit que afin de garantir la sécurité de tout les visiteurs, il est interdit d'accéder a Europa-Park avec des équipements de déplacement, motorisés ou non, tels que des patins a roulettes, des bicyclettes, des trottinettes. électrique ou non, etc, sauf si ils sont nécesaire a la personnes pour des raisons de santé justifiable.</p>
+        </div>
+
+        <h2>accès :</h2>
+        <p class="note-text"><strong>règle 2.4 :</strong>
+dit que seul les enfants n'ayant pas atteint leur 12 ans pleinement ont l'interdiction de rentrer sans accompagnateur</p>
+
+        <h2>pour le transport : euro moselle</h2>
+        
+        <a href="https://voyages.euromoselleloisirs.fr/journees-shopping-decouvertes/journee-en-famille-europapark-1/" class="preview-card" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.europapark.de/sites/default/files/styles/wide/public/media_image/2019-11/eurosat_cancan_coaster_halloween_europa-park.jpg?itok=yB_RW9rW" alt="Silver Star">
+            <div class="preview-card-info">
+                <span class="preview-card-title">Journée en famille à Europa-Park</span>
+                <div style="font-size:12px; color:#777;">voyages.euromoselleloisirs.fr</div>
+            </div>
+        </a>
+
+        <p class="note-text">prix de 91€ par personne
+<strong>compris :</strong> aller- retour en bus + 1 billets Europapark
+
+point de départ et d'arrivée disponible :
+4 possible</p>
+
+        <div class="location-grid">
+            <div class="location-item">
+                <strong>Thionville :</strong><br>Parking place de la Liberté<br>départ à 5h25<br>retour vers 23h05
+                <a href="https://www.google.com/maps/search/Parking+place+de+la+Liberté+Thionville" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+            </div>
+            <div class="location-item">
+                <strong>Semécourt :</strong><br>parking centre commercial auchan<br>départ à 5h50<br>retour vers 22h40
+                <a href="https://www.google.com/maps/search/parking+centre+commercial+auchan+Semecourt" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+            </div>
+            <div class="location-item">
+                <strong>Metz :</strong><br>devant l’arsenal<br>départ à 6h15<br>retour vers 22h15
+                <a href="https://www.google.com/maps/search/Arsenal+Metz" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+            </div>
+            <div class="location-item">
+                <strong>freyming :</strong><br>parking mega ciné CGR<br>départ à 7h00<br>retour vers 21h30
+                <a href="https://www.google.com/maps/search/CGR+Freyming-Merlebach" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+            </div>
+        </div>
+
+        <h2>dates disponibles :</h2>
+        <div style="margin-bottom: 25px; text-align: center;">
+            <span class="date-tag">samedi 18 avril 2026</span>
+            <span class="date-tag">samedi 09 mai 2026</span>
+            <span class="date-tag">samedi 23 mai 2026</span>
+            <span class="date-tag">samedi 27 juin 2026</span>
+            <span class="date-tag">dimanche 12 juillet 2026</span>
+            <span class="date-tag">samedi 18 juillet 2026</span>
+            <span class="date-tag">samedi 1er août</span>
+            <span class="date-tag">samedi 15 août</span>
+            <span class="date-tag">dimanche 23 août</span>
+        </div>
+
+        <p class="note-text">question sécurité pendant la journée, le trajet en bus est entièrement organisé avec départ et retours au même endroit, sans déplacement en dehors du parc nous passerons la journée dans le parc, et quand nous ne serons pas dans le parc nous serons dans le bus, nous ne serons dehors que pour quelque minutes le temps de marcher du parking au parc, qui sont d’ailleurs relier par une allée
+
+moi même étant passionné par le fonctionnement des parcs d’attractions, je suis très attentif aux règles de sécurité et je connais leur importance. je m’engage donc à les respecter strictement et à faire en sorte que tout le groupe le respecte également.
+
+Nous resterons toujours en groupe et nous ne nous séparerons en aucun cas
+En cas de problème nous nous adresserons au personnel du parc
+
+Nous resterons bien sûr joignables à tout moment et pourrons donner des nouvelles régulièrement.
+
+à prévoir, un minimum de 30-40€ pour la journée
+ou un repas tiré du sac
+
+personnes : de préférence en groupe pair
+4 - 6 - 8</p>
+
+        <h2>conseils :</h2>
+        <div class="highlight-box" style="border: 2px dashed var(--accent); background: white;">
+            <p class="note-text">chose à avoir :
+petit sac (sac à dos)
+bouteille d’eau
+argent
+autorisation parentale
+copie de la carte d’identité
+téléphone chargé
+batterie externe très conseillé
+bien sûr le billets à toujours avoir sur sois
+casquette</p>
+        </div>
+    </div>
+
+    <footer>
+        Dossier de présentation Sortie Europa-Park 2026
+    </footer>
+</div>
+
+</body>
+</html>
