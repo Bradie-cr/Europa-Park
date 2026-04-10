@@ -24,7 +24,6 @@
             background-color: var(--bg-body);
             margin: 0;
             padding: 10px;
-            /* Optimisation du rendu du texte pour la fluidité */
             -webkit-font-smoothing: antialiased;
         }
 
@@ -41,20 +40,21 @@
         header {
             background: var(--primary);
             color: white;
-            padding: 55px 30px;
+            padding: 40px 20px;
             text-align: center;
             border-bottom: 6px solid var(--accent);
-            background-image: linear-gradient(rgba(0,35,73,0.8), rgba(0,35,73,0.8)), url('https://www.europapark.de/sites/default/files/styles/max/public/media_image/2023-05/Europa-Park_Skyline.jpg');
+            background-image: linear-gradient(rgba(0,35,73,0.7), rgba(0,35,73,0.7)), url('https://www.europapark.de/sites/default/files/styles/max/public/media_image/2023-05/Europa-Park_Skyline.jpg');
             background-size: cover;
             background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        h1 { 
-            margin: 0; 
-            font-size: 36px; 
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        .header-logo {
+            max-width: 280px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
         }
 
         .content { padding: 45px 35px; }
@@ -67,7 +67,7 @@
             overflow: hidden;
             border: 1px solid #e2e8f0;
             margin: 25px 0;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transition plus fluide */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             background: #fff;
         }
@@ -83,7 +83,71 @@
             padding-left: 15px;
             margin-top: 45px;
             margin-bottom: 20px;
+            background: linear-gradient(to right, rgba(241, 245, 249, 0), transparent);
+            transition: all 0.4s ease-in-out;
+            cursor: default;
+        }
+
+        h2:hover {
             background: linear-gradient(to right, #f1f5f9, transparent);
+            border-left: 10px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        .price-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .price-tag {
+            display: inline-block;
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e40af; 
+            background: #dbeafe;
+            padding: 5px 20px;
+            border-radius: 10px;
+            border: 2px solid #1e40af;
+            margin-bottom: 10px;
+        }
+
+        .price-details {
+            font-size: 16px;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .departure-intro {
+            text-align: center;
+            margin: 40px 0 20px 0;
+            position: relative;
+        }
+        .departure-intro p {
+            display: inline-block;
+            background: white;
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            margin: 0;
+        }
+        .departure-intro::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e2e8f0;
+            z-index: 1;
         }
 
         .note-text { white-space: pre-wrap; margin-bottom: 20px; font-size: 15px; }
@@ -122,12 +186,19 @@
             gap: 15px;
             margin: 25px 0;
         }
+
         .location-item {
-            background: #f1f5f9;
-            border: 1px solid #e2e8f0;
+            background: #fdfcf7; 
+            border: 2px solid var(--accent); 
             padding: 18px;
             border-radius: 15px;
+            transition: transform 0.3s ease;
         }
+        .location-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(212, 160, 23, 0.2);
+        }
+
         .maps-btn {
             display: block;
             margin-top: 12px;
@@ -144,16 +215,129 @@
         }
         .maps-btn:hover { background: #f8fbff; }
 
+        /* --- Dates et Calendrier --- */
         .date-tag {
             display: inline-block;
             background: #fff;
             color: var(--primary);
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
             margin: 5px;
             font-size: 13px;
-            border: 1px solid #cbd5e1;
-            font-weight: 500;
+            border: 2px solid var(--accent); 
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .date-tag:hover {
+            transform: scale(1.15);
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(212, 160, 23, 0.3);
+            background: #fdfcf7;
+        }
+
+        #calendar-container {
+            margin: 25px auto;
+            padding: 20px;
+            background: #fdfcf7;
+            border-radius: 20px;
+            border: 2px solid var(--accent);
+            display: none;
+            max-width: 350px;
+            animation: slideDown 0.5s ease-out;
+        }
+        @keyframes slideDown { 
+            from { opacity: 0; transform: translateY(-10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .calendar-header { text-align: center; font-weight: bold; color: var(--primary); margin-bottom: 10px; text-transform: capitalize; font-size: 18px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; }
+        .day-name { font-size: 12px; color: #94a3b8; font-weight: bold; padding-bottom: 5px; }
+        .day { padding: 8px; font-size: 14px; border-radius: 8px; color: #64748b; }
+        .day.selected { 
+            background: var(--accent); 
+            color: white !important; 
+            font-weight: bold;
+            box-shadow: 0 0 10px var(--accent); 
+            transform: scale(1.1);
+        }
+
+        /* --- SECTION CONSEILS FLUIDE --- */
+        .collapsible-wrapper {
+            border: 2px dashed var(--accent);
+            border-radius: 15px;
+            margin: 25px 0;
+            background: white;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-trigger {
+            width: 100%;
+            padding: 20px;
+            background: #fdfcf7;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary);
+            font-family: inherit;
+        }
+
+        .collapsible-trigger:hover { background: #f8fafc; }
+
+        .arrow-icon {
+            font-size: 14px;
+            color: var(--accent);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s;
+            background: white;
+        }
+
+        .collapsible-wrapper.active { border: 2px solid var(--accent); box-shadow: 0 5px 15px rgba(212, 160, 23, 0.1); }
+        .collapsible-wrapper.active .arrow-icon { transform: rotate(180deg); }
+        .collapsible-wrapper.active .collapsible-content { padding-bottom: 10px; }
+
+        .inner-padding { padding: 0 25px; }
+
+        .conseils-title {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .conseils-list {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .conseils-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .conseils-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
         }
 
         footer {
@@ -165,27 +349,17 @@
             border-top: 1px solid #e2e8f0;
         }
 
-        /* Personnalisation de la barre de défilement (Scrollbar) pour Chrome/Safari */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-body);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>Europapark</h1>
+        <img src="https://mack.group/fileadmin/_processed_/c/e/csm_europa-park_INT_cb34c5e1ac.webp" alt="Logo Europa-Park" class="header-logo">
     </header>
 
     <div class="content">
@@ -223,8 +397,10 @@ dit que afin de garantir la sécurité de tout les visiteurs, il est interdit d'
         </div>
 
         <h2>accès :</h2>
-        <p class="note-text"><strong>règle 2.4 :</strong>
+        <div class="highlight-box">
+            <p class="note-text"><strong>règle 2.4 :</strong>
 dit que seul les enfants n'ayant pas atteint leur 12 ans pleinement ont l'interdiction de rentrer sans accompagnateur</p>
+        </div>
 
         <h2>pour le transport : euro moselle</h2>
         
@@ -236,42 +412,54 @@ dit que seul les enfants n'ayant pas atteint leur 12 ans pleinement ont l'interd
             </div>
         </a>
 
-        <p class="note-text">prix de 91€ par personne
-<strong>compris :</strong> aller- retour en bus + 1 billets Europapark
+        <div class="price-container">
+            <div class="price-tag">91€</div>
+            <div class="price-details">Prix par personne</div>
+            <div style="font-size: 13px; color: #64748b; margin-top: 10px;">
+                <strong>Comprend :</strong> Aller-retour en bus + 1 billet Europa-Park
+            </div>
+        </div>
 
-point de départ et d'arrivée disponible :
-4 possible</p>
+        <div class="departure-intro">
+            <p>Point de départ et d'arrivée disponible : 4 possible</p>
+        </div>
 
         <div class="location-grid">
             <div class="location-item">
                 <strong>Thionville :</strong><br>Parking place de la Liberté<br>départ à 5h25<br>retour vers 23h05
-                <a href="https://www.google.com/maps/search/Parking+place+de+la+Liberté+Thionville" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+                <a href="https://www.google.com/maps/search/Thionville+Place+de+la+Liberté" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
             </div>
             <div class="location-item">
                 <strong>Semécourt :</strong><br>parking centre commercial auchan<br>départ à 5h50<br>retour vers 22h40
-                <a href="https://www.google.com/maps/search/parking+centre+commercial+auchan+Semecourt" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+                <a href="https://www.google.com/maps/search/Auchan+Semécourt" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
             </div>
             <div class="location-item">
                 <strong>Metz :</strong><br>devant l’arsenal<br>départ à 6h15<br>retour vers 22h15
-                <a href="https://www.google.com/maps/search/Arsenal+Metz" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+                <a href="https://www.google.com/maps/search/Metz+Arsenal" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
             </div>
             <div class="location-item">
                 <strong>freyming :</strong><br>parking mega ciné CGR<br>départ à 7h00<br>retour vers 21h30
-                <a href="https://www.google.com/maps/search/CGR+Freyming-Merlebach" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+                <a href="https://www.google.com/maps/search/CGR+Freyming" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
             </div>
         </div>
 
         <h2>dates disponibles :</h2>
+        <p style="font-size: 13px; text-align: center; color: #64748b;">(Cliquez sur une date pour voir le calendrier)</p>
         <div style="margin-bottom: 25px; text-align: center;">
-            <span class="date-tag">samedi 18 avril 2026</span>
-            <span class="date-tag">samedi 09 mai 2026</span>
-            <span class="date-tag">samedi 23 mai 2026</span>
-            <span class="date-tag">samedi 27 juin 2026</span>
-            <span class="date-tag">dimanche 12 juillet 2026</span>
-            <span class="date-tag">samedi 18 juillet 2026</span>
-            <span class="date-tag">samedi 1er août</span>
-            <span class="date-tag">samedi 15 août</span>
-            <span class="date-tag">dimanche 23 août</span>
+            <span class="date-tag" data-date="2026-04-18">samedi 18 avril 2026</span>
+            <span class="date-tag" data-date="2026-05-09">samedi 09 mai 2026</span>
+            <span class="date-tag" data-date="2026-05-23">samedi 23 mai 2026</span>
+            <span class="date-tag" data-date="2026-06-27">samedi 27 juin 2026</span>
+            <span class="date-tag" data-date="2026-07-12">dimanche 12 juillet 2026</span>
+            <span class="date-tag" data-date="2026-07-18">samedi 18 juillet 2026</span>
+            <span class="date-tag" data-date="2026-08-01">samedi 1er août 2026</span>
+            <span class="date-tag" data-date="2026-08-15">samedi 15 août 2026</span>
+            <span class="date-tag" data-date="2026-08-23">dimanche 23 août 2026</span>
+        </div>
+
+        <div id="calendar-container">
+            <div class="calendar-header" id="cal-month">Mois</div>
+            <div class="calendar-grid" id="cal-grid"></div>
         </div>
 
         <p class="note-text">question sécurité pendant la journée, le trajet en bus est entièrement organisé avec départ et retours au même endroit, sans déplacement en dehors du parc nous passerons la journée dans le parc, et quand nous ne serons pas dans le parc nous serons dans le bus, nous ne serons dehors que pour quelque minutes le temps de marcher du parking au parc, qui sont d’ailleurs relier par une allée
@@ -289,25 +477,95 @@ ou un repas tiré du sac
 personnes : de préférence en groupe pair
 4 - 6 - 8</p>
 
-        <h2>conseils :</h2>
-        <div class="highlight-box" style="border: 2px dashed var(--accent); background: white;">
-            <p class="note-text">chose à avoir :
-petit sac (sac à dos)
-bouteille d’eau
-argent
-autorisation parentale
-copie de la carte d’identité
-téléphone chargé
-batterie externe très conseillé
-bien sûr le billets à toujours avoir sur sois
-casquette</p>
+        <div class="collapsible-wrapper" id="conseilsMenu">
+            <button class="collapsible-trigger" onclick="toggleConseils()">
+                conseils :
+                <span class="arrow-icon">▼</span>
+            </button>
+            <div class="collapsible-content" id="conseilsContent">
+                <div class="inner-padding">
+                    <div class="conseils-title">chose à avoir :</div>
+                    <ul class="conseils-list">
+                        <li>petit sac (sac à dos)</li>
+                        <li>bouteille d’eau</li>
+                        <li>argent</li>
+                        <li>autorisation parentale</li>
+                        <li>copie de la carte d’identité</li>
+                        <li>téléphone chargé</li>
+                        <li>batterie externe très conseillé</li>
+                        <li>bien sûr le billets à toujours avoir sur sois</li>
+                        <li>casquette</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+
     </div>
 
     <footer>
         Dossier de présentation Sortie Europa-Park 2026
     </footer>
 </div>
+
+<script>
+    // --- Logique de l'animation Conseils ---
+    function toggleConseils() {
+        const wrapper = document.getElementById('conseilsMenu');
+        const content = document.getElementById('conseilsContent');
+        
+        if (wrapper.classList.contains('active')) {
+            content.style.maxHeight = '0';
+            wrapper.classList.remove('active');
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            wrapper.classList.add('active');
+        }
+    }
+
+    // --- Logique du Calendrier ---
+    const dateTags = document.querySelectorAll('.date-tag');
+    const calContainer = document.getElementById('calendar-container');
+    const calMonth = document.getElementById('cal-month');
+    const calGrid = document.getElementById('cal-grid');
+
+    dateTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const dateStr = tag.getAttribute('data-date');
+            const selectedDate = new Date(dateStr);
+            calContainer.style.display = 'block';
+            generateCalendar(selectedDate);
+            calContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    });
+
+    function generateCalendar(date) {
+        calGrid.innerHTML = '';
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const daySelected = date.getDate();
+        const monthName = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(date);
+        calMonth.innerText = monthName;
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const start = (firstDay === 0) ? 6 : firstDay - 1;
+
+        ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].forEach(d => {
+            const div = document.createElement('div');
+            div.className = 'day-name'; div.innerText = d; calGrid.appendChild(div);
+        });
+
+        for (let i = 0; i < start; i++) calGrid.appendChild(document.createElement('div'));
+
+        for (let i = 1; i <= daysInMonth; i++) {
+            const div = document.createElement('div');
+            div.className = 'day';
+            div.innerText = i;
+            if (i === daySelected) div.className = 'day selected';
+            calGrid.appendChild(div);
+        }
+    }
+</script>
 
 </body>
 </html>
