@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organisation Sortie Europa-Park</title>
     <style>
-       
+        
         html {
             scroll-behavior: smooth;
         }
@@ -15,6 +15,7 @@
             --accent: #d4a017;  
             --text-dark: #2c3e50;
             --bg-body: #e2e8f0; 
+            --danger: #be123c;
         }
 
         body {
@@ -25,13 +26,10 @@
             margin: 0;
             padding: 10px;
             -webkit-font-smoothing: antialiased;
-            
-            
             caret-color: transparent; 
-            -webkit-tap-highlight-color: transparent; /* Enlève le flash au clic sur mobile */
+            -webkit-tap-highlight-color: transparent;
         }
 
-        
         body *:not(a):not(button):not(.date-tag):not(.collapsible-trigger):not(.maps-btn) {
             user-select: none;
             -webkit-user-select: none;
@@ -88,7 +86,6 @@
         .preview-card-info { padding: 18px; border-top: 4px solid var(--accent); }
         .preview-card-title { color: var(--primary); text-decoration: underline; font-weight: bold; font-size: 18px; }
 
-        
         h2 { 
             font-size: 22px; 
             color: var(--primary); 
@@ -98,9 +95,7 @@
             margin-bottom: 20px;
             background: linear-gradient(to right, rgba(241, 245, 249, 0), transparent);
             transition: all 0.4s ease-in-out;
-            cursor: default; /* Garde la flèche normale au lieu du curseur de texte */
-            
-            /* Pointer-events: auto est la valeur par défaut, on s'assure qu'elle est là */
+            cursor: default;
             pointer-events: auto; 
         }
 
@@ -110,10 +105,46 @@
             padding-left: 20px;
         }
 
+        .ast-box {
+            background: #fff5f5;
+            border: 2px solid #feb2b2;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .ast-title {
+            color: var(--danger);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .btn-ast {
+            display: inline-block;
+            background: var(--danger);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 6px rgba(190, 18, 60, 0.2);
+        }
+        .btn-ast:hover { 
+            background: #9f1239; 
+            transform: scale(1.08);
+            box-shadow: 0 8px 15px rgba(190, 18, 60, 0.3);
+        }
+        .btn-ast:active {
+            transform: scale(0.98);
+        }
+
         .price-container {
             text-align: center;
             margin: 30px 0;
-            padding: 20px;
+            padding: 30px 20px;
             background: #f8fafc;
             border-radius: 15px;
             border: 1px solid #e2e8f0;
@@ -231,7 +262,6 @@
         }
         .maps-btn:hover { background: #f8fbff; }
 
-        /* --- Dates et Calendrier --- */
         .date-tag {
             display: inline-block;
             background: #fff;
@@ -280,7 +310,6 @@
             transform: scale(1.1);
         }
 
-        /* --- SECTION CONSEILS FLUIDE --- */
         .collapsible-wrapper {
             border: 2px dashed var(--accent);
             border-radius: 15px;
@@ -325,15 +354,6 @@
         .collapsible-wrapper.active .collapsible-content { padding-bottom: 10px; }
 
         .inner-padding { padding: 0 25px; }
-
-        .conseils-title {
-            text-align: center;
-            font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            color: var(--primary);
-            text-decoration: underline;
-        }
 
         .conseils-list {
             list-style-type: none;
@@ -387,13 +407,13 @@
         </a>
 
         <h2>Sécurité du parc</h2>
-       <div class="departure-intro">
+        <div class="departure-intro">
             <p>Tout d'abord :</p>
-       </div>
+        </div>
 
         <div class="highlight-box">
             <p class="note-text"><strong>Règle 3.2 :</strong>
-Dit que tous les visiteurs sont tenus d'adopter un comportement correct et convenable. les troubles à l'ordre public, les dégradations volontaires, les préjudices à l'encontre des autres visiteurs, les violences verbales et physiques, les propos insultants ou discriminants, le non-respect du règlement du parc, etc pourront amener à une exclusion du parc, dépose de plainte ou autres recours.</p>
+Dit que touS les visiteurs sont tenus d'adopter un comportement correct et convenable. les troubles à l'ordre public, les dégradations volontaires, les préjudices à l'encontre des autres visiteurs, les violences verbales et physiques, les propos insultants ou discriminants, le non-respect du règlement du parc, etc pourront amener à une exclusion du parc, dépose de plainte ou autres recours.</p>
         </div>
 
         <div class="highlight-box">
@@ -414,13 +434,21 @@ Dit que la possession et le port d'armes, d'armes factices ou d'objets dangereux
 Dit qu'afin de garantir la sécurité de tous les visiteurs, il est interdit d'accéder à Europa-Park avec des équipements de déplacement, motorisés ou non, tels que des patins à roulettes, des bicyclettes, des trottinettes électrique ou non, etc, sauf s'ils sont nécesaires a la personne pour des raisons de santé justifiables.</p>
         </div>
 
+        <h2>Passage de la frontière</h2>
+        <div class="ast-box">
+            <div class="ast-title">⚠️ DOCUMENT OBLIGATOIRE : L'AST</div>
+            <p class="note-text" style="margin-bottom: 10px;">Le parc se situant en Allemagne, une <strong>Autorisation de Sortie du Territoire (AST)</strong> est strictement obligatoire pour tous les mineurs voyageant sans leurs parents.</p>
+            <p class="note-text" style="font-size: 14px; color: #7f1d1d;"><strong>À prévoir :</strong> Le formulaire signé + la photocopie de la pièce d'identité du parent signataire.</p>
+            <a href="https://www.service-public.fr/particuliers/vosdroits/R46121" class="btn-ast" target="_blank">📄 Remplir l'AST en ligne (Site Officiel)</a>
+        </div>
+
         <h2>Accès :</h2>
         <div class="highlight-box">
             <p class="note-text"><strong>Règle 2.4 :</strong>
 Dit que seuls les enfants n'ayant pas atteint leur 12 ans pleinement ont l'interdiction de rentrer sans accompagnateur.</p>
         </div>
 
-        <h2>Pour le transport : Euro moselle</h2>
+        <h2>Transport : Euro Moselle</h2>
         
         <a href="https://voyages.euromoselleloisirs.fr/journees-shopping-decouvertes/journee-en-famille-europapark-1/" class="preview-card" target="_blank" rel="noopener noreferrer">
             <img src="https://www.europapark.de/sites/default/files/styles/wide/public/media_image/2019-11/eurosat_cancan_coaster_halloween_europa-park.jpg?itok=yB_RW9rW" alt="Silver Star">
@@ -431,48 +459,55 @@ Dit que seuls les enfants n'ayant pas atteint leur 12 ans pleinement ont l'inter
         </a>
 
         <div class="price-container">
-            <div class="price-tag">91€</div>
-            <div class="price-details">Prix par personne</div>
-            <div style="font-size: 13px; color: #64748b; margin-top: 10px;">
-                <strong>Comprend :</strong> Aller-retour en bus + 1 billet Europa-Park
+            <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-bottom: 10px;">
+                <div>
+                    <div class="price-tag">81€</div>
+                    <div class="price-details">Enfant (-18 ans)</div>
+                </div>
+                <div>
+                    <div class="price-tag">91€</div>
+                    <div class="price-details">Adulte (+18 ans)</div>
+                </div>
+            </div>
+            <div style="font-size: 13px; color: #64748b; margin-top: 25px; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                <strong>Comprend :</strong> Aller-retour en bus + Ticket d'entrée au parc
             </div>
         </div>
 
         <div class="departure-intro">
-            <p>Point de départ et d'arrivée disponible : 4 possible</p>
+            <p>Points de départ disponibles : 4 choix</p>
         </div>
 
         <div class="location-grid">
             <div class="location-item">
                 <strong>Thionville :</strong><br>Parking place de la Liberté<br>Départ à 5h25<br>Retour vers 23h05
-                <a href="https://www.google.com/maps/search/Thionville+Place+de+la+Liberté" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+                <a href="https://maps.app.goo.gl/z2UbH6aU4sA4S4CMA" class="maps-btn" target="_blank">📍 Voir sur Google Maps</a>
             </div>
             <div class="location-item">
-                <strong>Semécourt :</strong><br>Parking centre commercial auchan<br>Départ à 5h50<br>Retour vers 22h40
-                <a href="https://www.google.com/maps/search/Auchan+Semécourt" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+                <strong>Semécourt :</strong><br>Parking Auchan<br>Départ à 5h50<br>Retour vers 22h40
+                <a href="https://maps.app.goo.gl/V8m6T6BvHbtX32K77" class="maps-btn" target="_blank">📍 Voir sur Google Maps</a>
             </div>
             <div class="location-item">
-                <strong>Metz :</strong><br>Devant l’arsenal<br>Départ à 6h15<br>Retour vers 22h15
-                <a href="https://www.google.com/maps/search/Metz+Arsenal" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+                <strong>Metz :</strong><br>Devant l’Arsenal<br>Départ à 6h15<br>Retour vers 22h15
+                <a href="https://maps.app.goo.gl/RURM868a6X48AdJq8" class="maps-btn" target="_blank">📍 Voir sur Google Maps</a>
             </div>
             <div class="location-item">
-                <strong>Freyming :</strong><br>Parking mega ciné CGR<br>Départ à 7h00<br>Retour vers 21h30
-                <a href="https://www.google.com/maps/search/CGR+Freyming" class="maps-btn" target="_blank" rel="noopener noreferrer">📍 Voir sur Google Maps</a>
+                <strong>Freyming :</strong><br>Parking cinéma CGR<br>Départ à 7h00<br>Retour vers 21h30
+                <a href="https://maps.app.goo.gl/vLXjs9n8pPeRR5jF6" class="maps-btn" target="_blank">📍 Voir sur Google Maps</a>
             </div>
         </div>
 
         <h2>Dates disponibles :</h2>
-        <p style="font-size: 13px; text-align: center; color: #64748b;">(Cliquez sur une date pour voir le calendrier)</p>
         <div style="margin-bottom: 25px; text-align: center;">
-            <span class="date-tag" data-date="2026-04-18">Samedi 18 avril 2026</span>
-            <span class="date-tag" data-date="2026-05-09">Samedi 09 mai 2026</span>
-            <span class="date-tag" data-date="2026-05-23">Samedi 23 mai 2026</span>
-            <span class="date-tag" data-date="2026-06-27">Samedi 27 juin 2026</span>
-            <span class="date-tag" data-date="2026-07-12">Dimanche 12 juillet 2026</span>
-            <span class="date-tag" data-date="2026-07-18">Samedi 18 juillet 2026</span>
-            <span class="date-tag" data-date="2026-08-01">Samedi 1er août 2026</span>
-            <span class="date-tag" data-date="2026-08-15">Samedi 15 août 2026</span>
-            <span class="date-tag" data-date="2026-08-23">Dimanche 23 août 2026</span>
+            <span class="date-tag" data-date="2026-04-18">Samedi 18 avril</span>
+            <span class="date-tag" data-date="2026-05-09">Samedi 09 mai</span>
+            <span class="date-tag" data-date="2026-05-23">Samedi 23 mai</span>
+            <span class="date-tag" data-date="2026-06-27">Samedi 27 juin</span>
+            <span class="date-tag" data-date="2026-07-12">Dimanche 12 juillet</span>
+            <span class="date-tag" data-date="2026-07-18">Samedi 18 juillet</span>
+            <span class="date-tag" data-date="2026-08-01">Samedi 01 août</span>
+            <span class="date-tag" data-date="2026-08-15">Samedi 15 août</span>
+            <span class="date-tag" data-date="2026-08-23">Dimanche 23 août</span>
         </div>
 
         <div id="calendar-container">
@@ -480,7 +515,7 @@ Dit que seuls les enfants n'ayant pas atteint leur 12 ans pleinement ont l'inter
             <div class="calendar-grid" id="cal-grid"></div>
         </div>
 
-        <p class="note-text">L'ensemble du voyage est totalement sécurisé, le déplacement se fera en bus, avec un point de départ et d'arrivée identique. Une fois arrivés, nous passerons du bus au parc par une allée piétonne, sans quitter la zone d'Europa-Park. Nous resterons dans une zone contrôlée tout au long de la journée, du départ le matin jusqu'au retour le soir.
+                <p class="note-text">L'ensemble du voyage est totalement sécurisé, le déplacement se fera en bus, avec un point de départ et d'arrivée identique. Une fois arrivés, nous passerons du bus au parc par une allée piétonne, sans quitter la zone d'Europa-Park. Nous resterons dans une zone contrôlée tout au long de la journée, du départ le matin jusqu'au retour le soir.
 
 Moi-même étant passionné par le fonctionnement des parcs d’attractions, je suis très attentif aux règles de sécurité et je connais leur importance. Je m’engage donc à les respecter strictement et j'attends des autres membres du groupe de les respecter également.
 
@@ -495,24 +530,24 @@ ou un repas tiré du sac
 Personnes : de préférence en groupe pair
 4 - 6 - 8</p>
 
+
         <div class="collapsible-wrapper" id="conseilsMenu">
             <button class="collapsible-trigger" onclick="toggleConseils()">
-                Conseils :
+                Choses à avoir :
                 <span class="arrow-icon">▼</span>
             </button>
             <div class="collapsible-content" id="conseilsContent">
                 <div class="inner-padding">
-                    <div class="conseils-title">Chose à avoir :</div>
-                    <ul class="conseils-list">
-                        <li>• Petit sac (sac à dos)</li>
+                    <ul class="conseils-list" style="margin-top: 20px;">
+                        <li>• Petit sac à dos</li>
                         <li>• Bouteille d’eau</li>
-                        <li>• Argent</li>
-                        <li>• Autorisation parentale</li>
-                        <li>• Copie de la carte d’identité</li>
+                        <li>• Argent liquide / Carte</li>
+                        <li>• Copie carte d'identité</li>
+                        <li>• AST + photocopie identité parent</li>
                         <li>• Téléphone chargé</li>
-                        <li>• Batterie externe très conseillé</li>
-                        <li>• Bien sûr le billets à toujours avoir sur sois</li>
-                        <li>• Casquette</li>
+                        <li>• Batterie externe (très conseillé)</li>
+                        <li>• Billets</li>
+                        <li>• Casquette / Crème solaire</li>
                     </ul>
                 </div>
             </div>
@@ -526,11 +561,9 @@ Personnes : de préférence en groupe pair
 </div>
 
 <script>
-    // --- Logique de l'animation Conseils ---
     function toggleConseils() {
         const wrapper = document.getElementById('conseilsMenu');
         const content = document.getElementById('conseilsContent');
-        
         if (wrapper.classList.contains('active')) {
             content.style.maxHeight = '0';
             wrapper.classList.remove('active');
@@ -540,7 +573,6 @@ Personnes : de préférence en groupe pair
         }
     }
 
-    // --- Logique du Calendrier ---
     const dateTags = document.querySelectorAll('.date-tag');
     const calContainer = document.getElementById('calendar-container');
     const calMonth = document.getElementById('cal-month');
@@ -563,18 +595,14 @@ Personnes : de préférence en groupe pair
         const daySelected = date.getDate();
         const monthName = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(date);
         calMonth.innerText = monthName;
-
         const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const start = (firstDay === 0) ? 6 : firstDay - 1;
-
         ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].forEach(d => {
             const div = document.createElement('div');
             div.className = 'day-name'; div.innerText = d; calGrid.appendChild(div);
         });
-
         for (let i = 0; i < start; i++) calGrid.appendChild(document.createElement('div'));
-
         for (let i = 1; i <= daysInMonth; i++) {
             const div = document.createElement('div');
             div.className = 'day';
